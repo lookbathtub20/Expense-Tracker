@@ -38,7 +38,7 @@ The scripts below are the ones currently present in `package.json`. Update this 
 | Development server | `npm run dev` | Available (`dev` script). |
 | Lint | `npm run lint` | Available (`lint` script). |
 | Production build | `npm run build` | Available (`build` script). |
-| Unit tests (Vitest) | n/a | No unit-test script or Vitest setup is present yet. |
+| Unit tests (Vitest) | `npm test` | Available (`test` script). |
 | Coverage | n/a | No coverage script or coverage setup is present yet. |
 | End-to-end tests (Cypress) | n/a | No Cypress script or Cypress setup is present yet. |
 
