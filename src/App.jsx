@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import ExpenseForm from './components/ExpenseForm.jsx'
+import ExpenseList from './components/ExpenseList.jsx'
 import './App.css'
 
 // App receives no props and owns the expense collection and selected category.
 function App() {
   const [expenses, setExpenses] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('')
+  const nextExpenseId = useRef(1)
 
   function handleAddExpense(expense) {
-    setExpenses((currentExpenses) => [...currentExpenses, expense])
+    const expenseWithId = { ...expense, id: nextExpenseId.current }
+    nextExpenseId.current += 1
+    setExpenses((currentExpenses) => [...currentExpenses, expenseWithId])
   }
 
   return (
@@ -32,21 +36,7 @@ function App() {
             {expenses.length}
           </span>
         </div>
-        {expenses.length === 0 ? (
-          <p className="empty-state">Your expenses will appear here.</p>
-        ) : (
-          <ul>
-            {expenses.map((expense, index) => (
-              <li className="expense-row" key={`${expense.title}-${index}`}>
-                <span>
-                  <strong>{expense.title}</strong>
-                  <small>{expense.category}</small>
-                </span>
-                <span className="expense-amount">${expense.amount.toFixed(2)}</span>
-              </li>
-            ))}
-          </ul>
-        )}
+        <ExpenseList expenses={expenses} />
       </section>
     </main>
   )
