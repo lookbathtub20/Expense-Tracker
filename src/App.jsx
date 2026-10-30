@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import ExpenseForm from './components/ExpenseForm.jsx'
 import ExpenseList from './components/ExpenseList.jsx'
 import CategoryFilter from './components/CategoryFilter.jsx'
+import { calculateExpenseTotal } from './utils/calculateExpenseTotal.js'
 import './App.css'
 
 // App receives no props and owns the expense collection and selected category.
@@ -26,6 +27,7 @@ function App() {
   const visibleExpenses = selectedFilter === 'All'
     ? expenses
     : expenses.filter((expense) => expense.category === selectedFilter)
+  const visibleExpenseTotal = calculateExpenseTotal(visibleExpenses)
 
   return (
     <main className="app-shell">
@@ -48,6 +50,7 @@ function App() {
             {expenses.length}
           </span>
         </div>
+        <p>Total: <span data-cy="total">{visibleExpenseTotal.toFixed(2)}</span></p>
         <CategoryFilter
           selectedCategory={selectedFilter}
           onCategoryChange={setSelectedFilter}
