@@ -46,8 +46,12 @@ function App() {
       <section className="expense-list" aria-labelledby="expense-list-title">
         <div className="section-heading">
           <h2 id="expense-list-title">Recent expenses</h2>
-          <span className="expense-count" aria-label={`${expenses.length} expenses`}>
-            {expenses.length}
+          <span
+            className="expense-count"
+            data-cy="count"
+            aria-label={`${visibleExpenses.length} expenses`}
+          >
+            {visibleExpenses.length}
           </span>
         </div>
         <p>Total: <span data-cy="total">{visibleExpenseTotal.toFixed(2)}</span></p>
