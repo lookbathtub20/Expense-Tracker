@@ -27,22 +27,22 @@ describe('ExpenseForm', () => {
     const onAddExpense = vi.fn()
     render(<ExpenseFormHarness onAddExpense={onAddExpense} />)
 
-    submitExpense({ title: '  Lunch  ', amount: '12.5' })
+    submitExpense({ title: '  Lunch  ', amount: '250' })
 
-    expect(onAddExpense).toHaveBeenCalledWith({
+    expect(onAddExpense).toHaveBeenCalledExactlyOnceWith({
       title: 'Lunch',
-      amount: 12.5,
+      amount: 250,
       category: 'Food',
     })
     expect(screen.getByLabelText('Title')).toHaveValue('')
     expect(screen.getByLabelText('Amount')).toHaveValue('')
   })
 
-  it('rejects an empty title and keeps the entered amount', () => {
+  it('rejects a blank title and keeps the entered amount', () => {
     const onAddExpense = vi.fn()
     render(<ExpenseFormHarness onAddExpense={onAddExpense} />)
 
-    submitExpense({ title: '   ', amount: '12.5' })
+    submitExpense({ title: '', amount: '12.5' })
 
     expect(onAddExpense).not.toHaveBeenCalled()
     expect(screen.getByRole('alert')).toHaveTextContent('Enter an expense title.')

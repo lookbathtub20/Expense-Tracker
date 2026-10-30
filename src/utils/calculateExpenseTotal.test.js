@@ -11,7 +11,7 @@ describe('calculateExpenseTotal', () => {
     ).toBe(650)
   })
 
-  it('returns zero when the expense list is empty', () => {
+  it('returns zero when there are no expenses', () => {
     expect(calculateExpenseTotal([])).toBe(0)
   })
 })
