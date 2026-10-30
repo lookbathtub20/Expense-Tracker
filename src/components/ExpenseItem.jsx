@@ -1,5 +1,5 @@
-// ExpenseItem receives one expense through props; App owns the expense state.
-function ExpenseItem({ expense }) {
+// ExpenseItem receives an expense and delete callback through props; App owns expense state.
+function ExpenseItem({ expense, onDeleteExpense }) {
   return (
     <li className="expense-row" data-cy="expense-item">
       <span>
@@ -9,6 +9,14 @@ function ExpenseItem({ expense }) {
       <span className="expense-amount" data-cy="expense-item-amount">
         ${expense.amount.toFixed(2)}
       </span>
+      <button
+        type="button"
+        data-cy="delete-expense"
+        aria-label={`Delete ${expense.title}`}
+        onClick={() => onDeleteExpense(expense.id)}
+      >
+        Delete
+      </button>
     </li>
   )
 }
