@@ -1,7 +1,7 @@
 import ExpenseItem from './ExpenseItem.jsx'
 
-// ExpenseList receives expenses through props and renders them; App owns the expense state.
-function ExpenseList({ expenses }) {
+// ExpenseList receives expenses and a delete callback through props; App owns expense state.
+function ExpenseList({ expenses, onDeleteExpense }) {
   return (
     <div data-cy="expense-list">
       {expenses.length === 0 ? (
@@ -11,7 +11,11 @@ function ExpenseList({ expenses }) {
       ) : (
         <ul>
           {expenses.map((expense) => (
-            <ExpenseItem expense={expense} key={expense.id} />
+            <ExpenseItem
+              expense={expense}
+              key={expense.id}
+              onDeleteExpense={onDeleteExpense}
+            />
           ))}
         </ul>
       )}

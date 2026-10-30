@@ -17,6 +17,12 @@ function App() {
     setExpenses((currentExpenses) => [...currentExpenses, expenseWithId])
   }
 
+  function handleDeleteExpense(expenseId) {
+    setExpenses((currentExpenses) =>
+      currentExpenses.filter((expense) => expense.id !== expenseId),
+    )
+  }
+
   const visibleExpenses = selectedFilter === 'All'
     ? expenses
     : expenses.filter((expense) => expense.category === selectedFilter)
@@ -46,7 +52,7 @@ function App() {
           selectedCategory={selectedFilter}
           onCategoryChange={setSelectedFilter}
         />
-        <ExpenseList expenses={visibleExpenses} />
+        <ExpenseList expenses={visibleExpenses} onDeleteExpense={handleDeleteExpense} />
       </section>
     </main>
   )
